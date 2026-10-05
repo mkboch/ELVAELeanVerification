@@ -1,7 +1,7 @@
 name = "ELVAELeanVerification"
-version = "1.0.0"
+version = "1.1.0"
 keywords = ["math"]
-defaultTargets = ["ELVAELeanVerification", "Official"]
+defaultTargets = ["ELVAELeanVerification", "Official", "PostHocE1", "PostHoc"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -23,4 +23,18 @@ name = "ELVAELeanVerification"
 # off for this library only. No other option differs; the linter concerns file headers, not proofs.
 [[lean_lib]]
 name = "Official"
+leanOptions = { weak.linter.style.header = false }
+
+# De-identified E1 corpus `PostHoc.E1.M01`–`PostHoc.E1.M23` (namespace `NS1`). Mechanical renaming
+# lengthens some lines, so the long-line style linter is also switched off here. Declared before
+# `PostHoc` so that these modules are built with these options.
+[[lean_lib]]
+name = "PostHocE1"
+globs = ["PostHoc.E1.+"]
+leanOptions = { weak.linter.style.header = false, weak.linter.style.longLine = false }
+
+# Post-hoc relation and Lean–L2 audit modules `PostHoc.Relations.*`, `PostHoc.LeanL2.*`, with the
+# aggregator `PostHoc`. No copyright headers, so the header style linter is switched off.
+[[lean_lib]]
+name = "PostHoc"
 leanOptions = { weak.linter.style.header = false }

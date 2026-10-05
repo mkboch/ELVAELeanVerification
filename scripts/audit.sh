@@ -11,7 +11,7 @@ echo "== 1. Clean rebuild of project modules (dependency builds are kept)"
 rm -rf .lake/build
 lake build > audit_build.log 2>&1
 build_status=$?
-grep -E "Built (ELVAE|Official)|warning|error" audit_build.log || true
+grep -E "Built (ELVAE|Official|PostHoc)|warning|error" audit_build.log || true
 if [ $build_status -ne 0 ]; then echo "FAIL: lake build exited with $build_status"; fail=1; fi
 
 echo
@@ -23,11 +23,18 @@ if [ "$n" != "0" ]; then echo "FAIL: build produced diagnostics"; fail=1; fi
 echo
 echo "== 3. Proof-escape search (should find nothing)"
 if grep -nE "\bsorry\b|\badmit\b|^\s*(private\s+)?axiom\b|\bunsafe\b|native_decide|implemented_by" \
-    ELVAELeanVerification/*.lean Official/*.lean; then
+    ELVAELeanVerification/*.lean Official/*.lean PostHoc/*/*.lean; then
   echo "FAIL: proof escape found"; fail=1
 else
   echo "none found"
 fi
+
+echo
+echo "== 3b. Relation audits (#relation_audit in PostHoc.Relations / PostHoc.LeanL2)"
+pass=$(grep -c "RELATION_AUDIT .* PASS" audit_build.log || true)
+rfail=$(grep -c "RELATION_AUDIT .* FAIL" audit_build.log || true)
+echo "relation audits passed: ${pass}; failed: ${rfail}"
+if [ "$rfail" != "0" ] || [ "$pass" -lt 46 ]; then echo "FAIL: relation audits"; fail=1; fi
 
 echo
 echo "== 4. Axiom audit of main results (ELVAE library)"
@@ -42,7 +49,7 @@ if [ $ax_status -ne 0 ] || [ "$errs" != "0" ] || [ "$bad" != "0" ] || [ "$checke
 fi
 
 echo
-echo "== 5. Axiom report over every constant of both libraries"
+echo "== 5. Axiom report over every constant of all libraries"
 if lake env lean scripts/AxiomReport.lean > audit_axiom_report.log 2>&1 \
     && grep -q "AXIOM_REPORT PASS" audit_axiom_report.log; then
   grep "AXIOM_REPORT" audit_axiom_report.log
