@@ -1,0 +1,26 @@
+name = "ELVAELeanVerification"
+version = "1.0.0"
+keywords = ["math"]
+defaultTargets = ["ELVAELeanVerification", "Official"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc3"
+
+# Formalization library `ELVAELeanVerification` (namespace `ELVAE`).
+[[lean_lib]]
+name = "ELVAELeanVerification"
+
+# Formalization modules `Official.M01`–`Official.M23` (namespace `NIGBottleneck`).
+# These files carry no copyright header, so Mathlib's copyright-header style linter is switched
+# off for this library only. No other option differs; the linter concerns file headers, not proofs.
+[[lean_lib]]
+name = "Official"
+leanOptions = { weak.linter.style.header = false }

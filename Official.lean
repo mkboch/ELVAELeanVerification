@@ -1,0 +1,24 @@
+-- Root of the `Official` formalization library: imports every module.
+import Official.M01
+import Official.M02
+import Official.M03
+import Official.M04
+import Official.M05
+import Official.M06
+import Official.M07
+import Official.M08
+import Official.M09
+import Official.M10
+import Official.M11
+import Official.M12
+import Official.M13
+import Official.M14
+import Official.M15
+import Official.M16
+import Official.M17
+import Official.M18
+import Official.M19
+import Official.M20
+import Official.M21
+import Official.M22
+import Official.M23

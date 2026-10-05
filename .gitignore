@@ -1,0 +1,19 @@
+# Lake build output and fetched dependencies
+/.lake
+*.olean
+*.ilean
+
+# Local audit logs written by scripts/audit.sh
+audit_build.log
+audit_axioms.log
+audit_axiom_report.log
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets (never commit)
+.env
+.env.*
+*.key

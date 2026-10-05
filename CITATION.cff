@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ELVAE Lean Verification"
+type: software
+authors:
+  - given-names: Md Motaleb Hossen
+    family-names: Manik
+    email: manikm@rpi.edu
+    affiliation: Rensselaer Polytechnic Institute
+  - given-names: Ge
+    family-names: Wang
+    email: wangg6@rpi.edu
+    affiliation: Rensselaer Polytechnic Institute
+repository-code: "https://github.com/mkboch/ELVAELeanVerification"
+license: MIT
+version: 1.0.0
+date-released: 2026-10-05
