@@ -32,6 +32,8 @@ import PostHoc.E1.M20
 import PostHoc.E1.M21
 import PostHoc.E1.M22
 import PostHoc.E1.M23
+import PostHoc.PaperAudit
 
 /-! Root of the `PostHoc` library: L1 ↔ B2 relation certificates (`PostHoc.Relations`), Lean ↔ L2
-audit modules (`PostHoc.LeanL2`) and the de-identified E1 corpus (`PostHoc.E1`). -/
+audit modules (`PostHoc.LeanL2`), the de-identified E1 corpus (`PostHoc.E1`) and the post-arXiv
+paper-wide verification modules (`PostHoc.PaperAudit`). -/

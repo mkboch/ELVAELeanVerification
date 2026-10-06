@@ -6,8 +6,8 @@ import PostHoc
 # Axiom report for all libraries
 
 `#axiom_report` enumerates every constant declared in a module of `ELVAELeanVerification`,
-`Official`, `PostHoc.Relations`, `PostHoc.LeanL2` or `PostHoc.E1` (including private and auxiliary
-constants), computes the axioms it depends on with
+`Official`, `PostHoc.Relations`, `PostHoc.LeanL2`, `PostHoc.E1` or `PostHoc.PaperAudit` (including
+private and auxiliary constants), computes the axioms it depends on with
 `Lean.collectAxioms`, prints per-library counts and the union, and fails unless the union is
 contained in the standard set {propext, Classical.choice, Quot.sound}. In particular it fails on
 `sorryAx` or on any user-declared axiom.
@@ -25,7 +25,8 @@ syntax (name := axiomReport) "#axiom_report" : command
   let env ← getEnv
   let standard : List Name := [``propext, ``Classical.choice, ``Quot.sound]
   let libs : List Name :=
-    [`ELVAELeanVerification, `Official, `PostHoc.Relations, `PostHoc.LeanL2, `PostHoc.E1]
+    [`ELVAELeanVerification, `Official, `PostHoc.Relations, `PostHoc.LeanL2, `PostHoc.E1,
+      `PostHoc.PaperAudit]
   let mut perLib : Std.HashMap Name (Nat × NameSet) := {}
   let mut union : NameSet := {}
   let mut offenders : Array (Name × Array Name) := #[]

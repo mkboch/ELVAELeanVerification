@@ -30,11 +30,11 @@ else
 fi
 
 echo
-echo "== 3b. Relation audits (#relation_audit in PostHoc.Relations / PostHoc.LeanL2)"
+echo "== 3b. Relation audits (#relation_audit in PostHoc)"
 pass=$(grep -c "RELATION_AUDIT .* PASS" audit_build.log || true)
 rfail=$(grep -c "RELATION_AUDIT .* FAIL" audit_build.log || true)
 echo "relation audits passed: ${pass}; failed: ${rfail}"
-if [ "$rfail" != "0" ] || [ "$pass" -lt 46 ]; then echo "FAIL: relation audits"; fail=1; fi
+if [ "$rfail" != "0" ] || [ "$pass" -lt 47 ]; then echo "FAIL: relation audits"; fail=1; fi
 
 echo
 echo "== 4. Axiom audit of main results (ELVAE library)"

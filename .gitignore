@@ -7,6 +7,7 @@
 audit_build.log
 audit_axioms.log
 audit_axiom_report.log
+paper_audit_axioms.log
 
 # Editor and OS files
 .vscode/

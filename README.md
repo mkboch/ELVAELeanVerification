@@ -48,6 +48,21 @@ or errors, the sources contain no `sorry`, `admit`, `axiom`, `unsafe`, `native_d
 `implemented_by`, and every constant depends only on the axioms `propext`, `Classical.choice` and
 `Quot.sound`.
 
+## Post-arXiv paper-wide verification
+
+`PostHoc/PaperAudit/` (root `PostHoc/PaperAudit.lean`) and `scripts/paper_audit/` were added after
+arXiv v1. They are not part of the historical B1/B2 results, and the historical Lean sources are
+unchanged. The modules restate the displayed mathematics of the manuscript (Eqs. (1)–(17)) in the
+paper's notation and prove it from the formal corpus, together with its proposition 2, 10, 11 and
+theorem 6 scope claims. `scripts/paper_audit/check_paper_audit.sh` checks these theorems' axioms and
+recomputes the arithmetic stated in the paper. Checking numerical claims against the study records
+requires the non-public research archive.
+
+```sh
+lake build
+bash scripts/paper_audit/check_paper_audit.sh
+```
+
 ## Repository scope
 
 This repository is intentionally code-only. Non-code records (manuscripts, model prompts and
